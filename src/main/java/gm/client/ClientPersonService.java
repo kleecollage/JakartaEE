@@ -1,8 +1,7 @@
-package gm.ejb.client;
+package gm.client;
 
-import gm.ejb.domain.Person;
-import gm.ejb.service.PersonServiceRemote;
-
+import gm.domain.Person;
+import gm.service.PersonServiceRemote;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;

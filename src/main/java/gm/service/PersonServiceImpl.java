@@ -1,13 +1,13 @@
-package gm.ejb.service;
+package gm.service;
 
-import gm.ejb.domain.Person;
+import gm.domain.Person;
 import jakarta.ejb.Stateless;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Stateless
-public class PersonServiceImpl implements PersonServiceRemote {
+public class PersonServiceImpl implements PersonServiceRemote, PersonService {
 
     @Override
     public List<Person> listPersons() {

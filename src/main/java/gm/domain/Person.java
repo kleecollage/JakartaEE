@@ -1,5 +1,4 @@
-package gm.ejb.domain;
-
+package gm.domain;
 
 import java.io.Serial;
 import java.io.Serializable;

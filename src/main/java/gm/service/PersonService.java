@@ -1,13 +1,11 @@
 package gm.service;
 
+import jakarta.ejb.Local;
 import gm.domain.Person;
-import jakarta.ejb.Remote;
-
 import java.util.List;
 
-@Remote
-public interface PersonServiceRemote {
-
+@Local
+public interface PersonService {
     public List<Person> listPersons();
 
     public Person findPersonById(Person person);
