@@ -6,6 +6,9 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "person")
+@NamedQueries({
+    @NamedQuery(name = "Person.findAll", query = "SELECT p FROM Person p ORDER BY p.idPerson")
+})
 public class Person implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
