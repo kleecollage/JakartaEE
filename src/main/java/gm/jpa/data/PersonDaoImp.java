@@ -24,7 +24,7 @@ public class PersonDaoImp implements PersonDao {
 
     @Override
     public Person findPersonByEmail(Person person) {
-        Query query = em.createQuery("FROM Person p WHERE p.email = :email");
+        Query query = em.createQuery("SELECT p FROM Person p WHERE p.email = :email");
         query.setParameter("email", person.getEmail());
         return (Person) query.getSingleResult();
     }
