@@ -5,7 +5,6 @@ import gm.jpa.domain.Person;
 import jakarta.ejb.Stateless;
 import jakarta.inject.Inject;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Stateless

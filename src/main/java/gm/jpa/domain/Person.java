@@ -1,32 +1,51 @@
 package gm.jpa.domain;
 
 import jakarta.persistence.*;
-import java.io.Serial;
-import java.io.Serializable;
+import jakarta.validation.constraints.Size;
+import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlTransient;
+
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
-@Table(name = "person")
-@NamedQueries({
-    @NamedQuery(name = "Person.findAll", query = "SELECT p FROM Person p ORDER BY p.idPerson")
+@Table(name = "person", schema = "jpa_db", uniqueConstraints = {
+        @UniqueConstraint(name = "email_UNIQUE", columnNames = {"email"})
 })
-public class Person implements Serializable {
-    @Serial
-    private static final long serialVersionUID = 1L;
-
+@XmlRootElement
+@NamedQueries({
+        @NamedQuery(name = "Person.findAll", query = "SELECT p FROM Person p"),
+        @NamedQuery(name = "Person.findByIdPerson", query = "SELECT p FROM Person p WHERE p.idPerson = :idPerson"),
+        @NamedQuery(name = "Person.findByName", query = "SELECT p FROM Person p WHERE p.name = :name"),
+        @NamedQuery(name = "Person.findBySurname", query = "SELECT p FROM Person p WHERE p.surname = :surname"),
+        @NamedQuery(name = "Person.findByEmail", query = "SELECT p FROM Person p WHERE p.email = :email"),
+        @NamedQuery(name = "Person.findByPhone", query = "SELECT p FROM Person p WHERE p.phone = :phone")})
+public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_person")
-    private int idPerson;
+    @Column(name = "id_person", nullable = false)
+    private Integer idPerson;
 
+    @Size(max = 100)
+    @Column(name = "name", length = 100)
     private String name;
 
+    @Size(max = 100)
+    @Column(name = "surname", length = 100)
     private String surname;
 
+    @Size(max = 150)
+    @Column(name = "email", length = 150)
     private String email;
 
+    @Size(max = 20)
+    @Column(name = "phone", length = 20)
     private String phone;
 
-    // NO ARGS CONSTRUCTOR
+    @OneToMany(mappedBy = "person")
+    private List<User> userslist;
+
     public Person() { }
 
     public Person(String name, String surname, String email, String phone) {
@@ -36,12 +55,21 @@ public class Person implements Serializable {
         this.phone = phone;
     }
 
-    public int getIdPerson() {
+    @XmlTransient
+    public List<User> getUserList() {
+        return userslist;
+    }
+
+    public void setUserList(List<User> userslist) {
+        this.userslist = userslist;
+    }
+
+    public Integer getIdPerson() {
         return idPerson;
     }
 
-    public void setIdPerson(int idPerson) {
-        this.idPerson = idPerson;
+    public void setIdPerson(Integer id) {
+        this.idPerson = id;
     }
 
     public String getName() {
@@ -77,28 +105,25 @@ public class Person implements Serializable {
     }
 
     @Override
+    public boolean equals(Object object) {
+        if (!(object instanceof Person)) {
+            return false;
+        }
+        Person other = (Person) object;
+        if ((this.idPerson == null && other.idPerson != null) || (this.idPerson != null && !this.idPerson.equals(other.idPerson))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
     public String toString() {
         return "Person{" +
-                "idPerson=" + idPerson +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
+                "phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
-                ", phone='" + phone + '\'' +
+                ", surname='" + surname + '\'' +
+                ", name='" + name + '\'' +
+                ", idPerson=" + idPerson +
                 '}';
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

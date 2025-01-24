@@ -1,7 +1,8 @@
 package gm.jpa.service;
 
-import jakarta.ejb.Local;
 import gm.jpa.domain.Person;
+import jakarta.ejb.Local;
+
 import java.util.List;
 
 @Local
