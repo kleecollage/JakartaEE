@@ -1,14 +1,12 @@
 package gm.jpa.test;
 
 import gm.jpa.domain.Person;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.Persistence;
-import org.apache.logging.log4j.*;
+import jakarta.persistence.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ClientEntityPerson {
-    static Logger log = LogManager.getRootLogger();
+    static Logger log = LoggerFactory.getLogger(ClientEntityPerson.class);
 
     public static void main(String[] args) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PersonPU");
