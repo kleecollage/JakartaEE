@@ -1,10 +1,12 @@
-package gm.jpa.data;
+package gm.jpa.service;
 
 import gm.jpa.domain.User;
+import jakarta.ejb.Remote;
 
 import java.util.List;
 
-public interface UserDao {
+@Remote
+public interface UserServiceRemote {
     public List<User> findAllUsers();
 
     public User findUserById(User user);
