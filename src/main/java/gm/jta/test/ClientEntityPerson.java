@@ -2,14 +2,14 @@ package gm.jta.test;
 
 import gm.jta.domain.Person;
 import jakarta.persistence.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class ClientEntityPerson {
-    static Logger log = LoggerFactory.getLogger(ClientEntityPerson.class);
+    static Logger log = LogManager.getRootLogger();
 
     public static void main(String[] args) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PersonPU");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("SmsPU");
         EntityManager em = emf.createEntityManager();
         EntityTransaction tx = em.getTransaction();
         // INIT TRANSACTION

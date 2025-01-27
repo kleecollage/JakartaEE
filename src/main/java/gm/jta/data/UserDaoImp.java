@@ -4,13 +4,15 @@ import gm.jta.domain.User;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.PersistenceUnit;
 
 import java.util.List;
 
 @Stateless
 public class UserDaoImp implements UserDao {
 
-    @PersistenceContext(unitName = "PersonPU")
+    // @PersistenceContext(unitName = "SmsPU") // this is in case of JTA TRANSACTIONS
+    @PersistenceUnit(unitName = "SmsPU") // THIS IS FOR .RESOURCE LOCAL TRANSACTIONS
     EntityManager em;
 
     @Override
