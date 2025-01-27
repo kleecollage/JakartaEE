@@ -21,21 +21,14 @@ public class UpdateJpaObjectLongSession {
         tx.begin();
         // 2. EXECUTE SELECT SQL SENTENCE
         Person person1 = em.find(Person.class, 1);
-        // 3. END OF TRANSACTION 1
+        log.debug("Object found: " + person1);
+        // 3. setValue(newValue)
+        person1.setEmail("j.smith55@mail.com");
+        person1.setEmail("john.smith@mail.com");
+        // 4. END TRANSACTION
         tx.commit();
-        // Status: detached
-        log.debug("Person recovered - status detached : " + person1);
-        // 4. setValue(new value)
-        person1.setSurname("Smith");
-        // 5. INIT TRANSACTION 2.
-        EntityTransaction tx2 = em.getTransaction();
-        tx2.begin();
-        // 6. UPDATE OBJECT
-        em.merge(person1);
-        // 7. END OF TRANSACTION 2
-        tx2.commit();
-        // Status: detached and updated
-        log.debug("Object recovered - status detached : " + person1);
+        // Object status: deatached
+        log.debug("Object updated: " + person1);
         // CLOSE ENTITY MANAGER
         em.close();
     }
