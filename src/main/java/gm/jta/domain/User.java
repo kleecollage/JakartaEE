@@ -20,8 +20,8 @@ public class User {
     @Column(name = "id_user", nullable = false)
     private Integer idUser;
 
-    @ManyToOne
     @JoinColumn(name = "id_person", referencedColumnName = "id_person")
+    @ManyToOne(fetch = FetchType.EAGER)
     private Person person;
 
     @Size(max = 100)

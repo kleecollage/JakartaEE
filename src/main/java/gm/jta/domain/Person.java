@@ -24,6 +24,9 @@ public class Person {
     @Column(name = "id_person", nullable = false)
     private Integer idPerson;
 
+    @OneToMany(mappedBy = "person", fetch = FetchType.EAGER)
+    private List<User> userslist;
+
     @Size(max = 100)
     @Column(name = "name", length = 100)
     private String name;
@@ -39,9 +42,6 @@ public class Person {
     @Size(max = 20)
     @Column(name = "phone", length = 20)
     private String phone;
-
-    @OneToMany(mappedBy = "person")
-    private List<User> userslist;
 
     public Person() { }
 
