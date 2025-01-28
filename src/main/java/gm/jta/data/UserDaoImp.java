@@ -11,8 +11,8 @@ import java.util.List;
 @Stateless
 public class UserDaoImp implements UserDao {
 
-    // @PersistenceContext(unitName = "SmsPU") // this is in case of JTA TRANSACTIONS
-    @PersistenceUnit(unitName = "SmsPU") // THIS IS FOR .RESOURCE LOCAL TRANSACTIONS
+    @PersistenceContext(unitName = "SmsPU") // this is in case of JTA TRANSACTIONS
+    // @PersistenceUnit(unitName = "SmsPU") // THIS IS FOR .RESOURCE LOCAL TRANSACTIONS
     EntityManager em;
 
     @Override

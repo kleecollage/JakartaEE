@@ -31,7 +31,7 @@ public class Person {
     @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
     private List<User> userslist;
 
-    @Size(max = 100)
+    // @Size(max = 100)
     @Column(name = "name", length = 100)
     private String name;
 
