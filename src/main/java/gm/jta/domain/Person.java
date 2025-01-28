@@ -49,6 +49,10 @@ public class Person {
 
     public Person() { }
 
+    public Person(Integer idPerson) {
+        this.idPerson = idPerson;
+    }
+
     public Person(String name, String surname, String email, String phone) {
         this.name = name;
         this.surname = surname;
