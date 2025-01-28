@@ -20,8 +20,12 @@ public class User {
     @Column(name = "id_user", nullable = false)
     private Integer idUser;
 
+    // This @ManyToOne association is eager, meaning that it will perform
+    // a JOIN query to fetch the associated Person entity for each User entity.
+    // Be cautious of potential performance issues when fetching large datasets.
+    // @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_person", referencedColumnName = "id_person")
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.ALL)
     private Person person;
 
     @Size(max = 100)
@@ -43,6 +47,13 @@ public class User {
 
     public User(Integer idUser) {
         this.idUser = idUser;
+    }
+
+    // Constructor For cascade persistence user->person
+    public User(String username, String password, Person person) {
+        this.username = username;
+        this.password = password;
+        this.person = person;
     }
 
     public Integer getId() {

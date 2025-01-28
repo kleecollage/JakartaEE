@@ -24,7 +24,11 @@ public class Person {
     @Column(name = "id_person", nullable = false)
     private Integer idPerson;
 
-    @OneToMany(mappedBy = "person", fetch = FetchType.EAGER)
+    // This @OneToMany association is eager, which triggers multiple SELECT queries
+    // (one for each Person entity) to load the associated User entities.
+    // Consider using FetchType.LAZY or optimizing with JOIN FETCH for better performance.
+    // @OneToMany(mappedBy = "person", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
     private List<User> userslist;
 
     @Size(max = 100)
