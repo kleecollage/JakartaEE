@@ -4,8 +4,6 @@ import gm.jta.domain.User;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import jakarta.persistence.PersistenceUnit;
-
 import java.util.List;
 
 @Stateless

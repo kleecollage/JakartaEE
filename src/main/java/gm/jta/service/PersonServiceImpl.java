@@ -2,8 +2,6 @@ package gm.jta.service;
 
 import gm.jta.data.PersonDao;
 import gm.jta.domain.Person;
-import jakarta.annotation.Resource;
-import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;
 import jakarta.inject.Inject;
 
@@ -14,9 +12,6 @@ public class PersonServiceImpl implements PersonServiceRemote, PersonService {
 
     @Inject
     private PersonDao personDao;
-
-    @Resource
-    private SessionContext context;
 
     @Override
     public List<Person> listPersons() {
@@ -40,12 +35,7 @@ public class PersonServiceImpl implements PersonServiceRemote, PersonService {
 
     @Override
     public void updatePerson(Person person) {
-        try {
-            personDao.updatePerson(person);
-        } catch (Throwable t) {
-            context.setRollbackOnly();
-            t.printStackTrace(System.out);
-        }
+        personDao.updatePerson(person);
     }
 
     @Override

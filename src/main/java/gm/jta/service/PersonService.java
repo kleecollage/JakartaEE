@@ -1,9 +1,9 @@
 package gm.jta.service;
 
+import java.util.List;
+
 import gm.jta.domain.Person;
 import jakarta.ejb.Local;
-
-import java.util.List;
 
 @Local
 public interface PersonService {

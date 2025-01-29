@@ -9,8 +9,8 @@ import java.util.List;
 @Stateless
 public class PersonDaoImp implements PersonDao {
 
-    @PersistenceContext(unitName = "SmsPU") // THIS IS FOR JTA TRANSACTIONS
     // @PersistenceUnit(unitName = "SmsPU") // THIS IS FOR RESOURCE_LOCAL TRANSACTIONS
+    @PersistenceContext(unitName = "SmsPU") // THIS IS FOR JTA TRANSACTIONS
     EntityManager em;
 
     @Override

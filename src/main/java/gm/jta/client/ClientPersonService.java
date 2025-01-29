@@ -16,7 +16,6 @@ public class ClientPersonService {
             Properties props = new Properties();
             props.put(Context.INITIAL_CONTEXT_FACTORY, "org.wildfly.naming.client.WildFlyInitialContextFactory");
             props.put(Context.PROVIDER_URL, "http-remoting://localhost:8080");
-
             Context jndi = new InitialContext(props);
             PersonServiceRemote personService = (PersonServiceRemote) jndi.lookup("ejb:/ejb/PersonServiceImpl!gm.ejb.service.PersonServiceRemote");
             List<Person> persons = personService.listPersons();

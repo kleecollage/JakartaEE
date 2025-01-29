@@ -7,7 +7,6 @@ import java.util.List;
 
 @Remote
 public interface PersonServiceRemote {
-
     public List<Person> listPersons();
 
     public Person findPersonById(Person person);
