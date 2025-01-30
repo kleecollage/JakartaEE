@@ -51,12 +51,6 @@
             <version>4.0.3</version>
         </dependency>
         <dependency>
-            <groupId>jakarta.faces</groupId>
-            <artifactId>jakarta.faces-api</artifactId>
-            <version>4.1.0</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
             <groupId>jakarta.servlet</groupId>
             <artifactId>jakarta.servlet-api</artifactId>
             <version>6.1.0</version>
@@ -96,10 +90,10 @@
             <version>3.0.1</version>
         </dependency>
         <dependency>
-            <groupId>org.wildfly</groupId>
-            <artifactId>wildfly-ejb-client-bom</artifactId>
-            <version>35.0.0.Final</version>
-            <type>pom</type>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+            <version>14.0.11</version>
+            <classifier>jakarta</classifier>
         </dependency>
         <dependency>
             <groupId>org.wildfly</groupId>

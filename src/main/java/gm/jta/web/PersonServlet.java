@@ -22,6 +22,6 @@ public class PersonServlet extends HttpServlet {
         List<Person> persons = this.personService.listPersons();
         System.out.println("persons = " + persons);
         request.setAttribute("persons", persons);
-        request.getRequestDispatcher("/personsList.jsp").forward(request, response);
+        // request.getRequestDispatcher("/listPeople.xhtml").forward(request, response);
     }
 }

@@ -22,8 +22,8 @@ public class TestHandleTransactions {
             Person person1 = personService.findPersonById(new Person(1));
             log.debug("Person recovered: " + person1);
             // CREATE A CONTROLLED ERROR
-            person1.setSurname("update with error..............................");
-            // person1.setSurname("Doe");
+            // person1.setSurname("update with error..............................");
+            person1.setSurname("Doe");
 
             personService.updatePerson(person1);
             log.debug("Object updated: " + person1);

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui" >
+<h:head>
+    <title>List People</title>
+</h:head>
+<h:body>
+    <h2>List of Persons</h2>
+    <p:ajaxStatus style="width: 16px;height: 16px" id="ajaxStatusPanel">
+        <f:facet name="start">
+            <h:graphicImage library="images" name="spinner.gif" />
+        </f:facet>
+        <f:facet name="complete">
+            <h:outputText value="" />
+        </f:facet>
+    </p:ajaxStatus>
+    <h:form id="personsListForm">
+        <p:growl id="messages" showDetail="true" />
+        <p:messages />
+        <p:dataTable id="personsDataTable" value="#{personBean.persons}" var="person" editable="true" rowKey="#{person.idPerson}"
+                     selection="#{personBean.personSelected}" selectionMode="single">
+            <!-- TABLE HEADER -->
+            <f:facet name="header">List of People</f:facet>
+            <!-- TABLE COLUMS -->
+            <p:column headerText="ID">
+                <h:outputText value="#{person.idPerson}" />
+            </p:column>
+
+            <p:column headerText="Name">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{person.name}" />
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:inputText value="#{person.name}" />
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+
+            <p:column headerText="Surname">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{person.surname}" />
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:inputText value="#{person.surname}" />
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+
+            <p:column headerText="Email">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{person.email}" />
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:inputText value="#{person.email}" />
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+
+            <p:column headerText="Phone">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{person.phone}" />
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:inputText value="#{person.phone}" />
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+            <!-- TABLE FOOTER -->
+            <f:facet name="footer">
+                <p:commandButton value="Return" action="index" />
+                <p:spacer height="5px" />
+                <p:commandButton value="Add" actionListener="#{personBean.resetPersonSelected}"
+                                 update=":dialogForm" oncomplete="PF('personDialog').show()" />
+            </f:facet>
+            <!-- TAG TO EDIT TABLE -->
+            <p:column headerText="Options" style="width: 50px">
+                <p:rowEditor />
+            </p:column>
+            <p:ajax event="rowEdit" listener="#{personBean.editListener}" />
+        </p:dataTable>
+
+        <p:contextMenu for="personsDataTable">
+            <p:menuitem value="Delete" update="personsListForm:personsDataTable" icon="ui-icon-close"
+                        actionListener="#{personBean.removePerson()}" />
+        </p:contextMenu>
+
+    </h:form>
+
+    <p:dialog id="personDlg" widgetVar="personDialog" height="Add Person" modal="true"
+              showEffect="fade" hideEffect="fade" resizable="false">
+        <h:form id="dialogForm">
+            <p:outputPanel id="personDetail" style="text-align: center">
+                <p:panelGrid id="display" columns="4" columnClasses="label, value">
+                    <h:outputText value="Name" />
+                    <h:inputText value="#{personBean.personSelected.name}" />
+
+                    <h:outputText value="Surname" />
+                    <h:inputText value="#{personBean.personSelected.surname}" />
+
+                    <h:outputText value="Email" />
+                    <h:inputText value="#{personBean.personSelected.email}" />
+
+                    <h:outputText value="Phone" />
+                    <h:inputText value="#{personBean.personSelected.phone}" />
+
+                    <f:facet name="footer">
+                        <p:commandButton value="Add" actionListener="#{personBean.addPerson}"
+                                         update="display,:personsListForm:personsDataTable"
+                                         oncomplete="PF('personDialog').hide();" />
+                    </f:facet>
+                </p:panelGrid>
+            </p:outputPanel>
+        </h:form>
+    </p:dialog>
+
+</h:body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

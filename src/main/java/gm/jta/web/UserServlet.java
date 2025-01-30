@@ -22,6 +22,6 @@ public class UserServlet extends HttpServlet {
         List<User> users = this.userService.findAllUsers();
         System.out.println("users = " + users);
         request.setAttribute("users", users);
-        request.getRequestDispatcher("/usersList.jsp").forward(request, response);
+        // request.getRequestDispatcher("/usersList.jsp").forward(request, response);
     }
 }
