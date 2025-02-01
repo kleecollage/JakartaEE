@@ -2,8 +2,7 @@ package gm.jta.domain;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
-import jakarta.xml.bind.annotation.XmlRootElement;
-import jakarta.xml.bind.annotation.XmlTransient;
+import jakarta.xml.bind.annotation.*;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -20,7 +19,9 @@ import java.util.List;
         @NamedQuery(name = "Person.findByName", query = "SELECT p FROM Person p WHERE p.name = :name"),
         @NamedQuery(name = "Person.findBySurname", query = "SELECT p FROM Person p WHERE p.surname = :surname"),
         @NamedQuery(name = "Person.findByEmail", query = "SELECT p FROM Person p WHERE p.email = :email"),
-        @NamedQuery(name = "Person.findByPhone", query = "SELECT p FROM Person p WHERE p.phone = :phone")})
+        @NamedQuery(name = "Person.findByPhone", query = "SELECT p FROM Person p WHERE p.phone = :phone")
+})
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Person implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -34,6 +35,7 @@ public class Person implements Serializable {
     // (one for each Person entity) to load the associated User entities.
     // Consider using FetchType.LAZY or optimizing with JOIN FETCH for better performance.
     // @OneToMany(mappedBy = "person", fetch = FetchType.EAGER)
+    @XmlTransient // Dont sent users list related
     @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
     private List<User> userslist;
 

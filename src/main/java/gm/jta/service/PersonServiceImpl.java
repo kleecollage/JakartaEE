@@ -4,11 +4,13 @@ import gm.jta.data.PersonDao;
 import gm.jta.domain.Person;
 import jakarta.ejb.Stateless;
 import jakarta.inject.Inject;
+import jakarta.jws.WebService;
 
 import java.util.List;
 
 @Stateless
-public class PersonServiceImpl implements PersonServiceRemote, PersonService {
+@WebService(endpointInterface = "gm.jta.service.PersonServiceWs")
+public class PersonServiceImpl implements PersonServiceRemote, PersonService, PersonServiceWs {
 
     @Inject
     private PersonDao personDao;
