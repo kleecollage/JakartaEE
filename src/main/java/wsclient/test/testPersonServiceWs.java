@@ -16,6 +16,6 @@ public class testPersonServiceWs {
             System.out.println("person ID = " + person.getIdPerson() + ", name: " + person.getName() +
                     ", surname: " + person.getSurname() + ", email: " + person.getEmail());
         }
-        System.out.println("End service list persons ws");
+        System.out.println("End service list persons ws2");
     }
 }
