@@ -2,12 +2,15 @@ package gm.jta.domain;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.XmlTransient;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "person", schema = "jpa_db", uniqueConstraints = {
@@ -20,7 +23,9 @@ import java.util.List;
         @NamedQuery(name = "Person.findByName", query = "SELECT p FROM Person p WHERE p.name = :name"),
         @NamedQuery(name = "Person.findBySurname", query = "SELECT p FROM Person p WHERE p.surname = :surname"),
         @NamedQuery(name = "Person.findByEmail", query = "SELECT p FROM Person p WHERE p.email = :email"),
-        @NamedQuery(name = "Person.findByPhone", query = "SELECT p FROM Person p WHERE p.phone = :phone")})
+        @NamedQuery(name = "Person.findByPhone", query = "SELECT p FROM Person p WHERE p.phone = :phone")
+})
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Person implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -29,13 +34,6 @@ public class Person implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_person", nullable = false)
     private Integer idPerson;
-
-    // This @OneToMany association is eager, which triggers multiple SELECT queries
-    // (one for each Person entity) to load the associated User entities.
-    // Consider using FetchType.LAZY or optimizing with JOIN FETCH for better performance.
-    // @OneToMany(mappedBy = "person", fetch = FetchType.EAGER)
-    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
-    private List<User> userslist;
 
     @Size(max = 100)
     @Column(name = "name", length = 100)
@@ -53,6 +51,14 @@ public class Person implements Serializable {
     @Column(name = "phone", length = 20)
     private String phone;
 
+    // This @OneToMany association is eager, which triggers multiple SELECT queries
+    // (one for each Person entity) to load the associated User entities.
+    // Consider using FetchType.LAZY or optimizing with JOIN FETCH for better performance.
+    // @OneToMany(mappedBy = "person", fetch = FetchType.EAGER)
+    @XmlTransient
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
+    private List<User> userslist;
+
     public Person() { }
 
     public Person(Integer idPerson) {
@@ -66,7 +72,6 @@ public class Person implements Serializable {
         this.phone = phone;
     }
 
-    @XmlTransient
     public List<User> getUserList() {
         return userslist;
     }
@@ -116,15 +121,22 @@ public class Person implements Serializable {
     }
 
     @Override
-    public boolean equals(Object object) {
-        if (!(object instanceof Person)) {
-            return false;
-        }
-        Person other = (Person) object;
-        if ((this.idPerson == null && other.idPerson != null) || (this.idPerson != null && !this.idPerson.equals(other.idPerson))) {
-            return false;
-        }
-        return true;
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Person person = (Person) o;
+        return idPerson.equals(person.idPerson) && Objects.equals(name, person.name) && Objects.equals(surname, person.surname) && Objects.equals(email, person.email) && Objects.equals(phone, person.phone) && Objects.equals(userslist, person.userslist);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = idPerson.hashCode();
+        result = 31 * result + Objects.hashCode(name);
+        result = 31 * result + Objects.hashCode(surname);
+        result = 31 * result + Objects.hashCode(email);
+        result = 31 * result + Objects.hashCode(phone);
+        result = 31 * result + Objects.hashCode(userslist);
+        return result;
     }
 
     @Override

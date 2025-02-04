@@ -2,16 +2,25 @@ package gm.jta.service;
 
 import gm.jta.data.PersonDao;
 import gm.jta.domain.Person;
+import jakarta.annotation.Resource;
+import jakarta.ejb.LocalBean;
+import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;
 import jakarta.inject.Inject;
+import jakarta.jws.WebService;
 
+import java.util.ArrayList;
 import java.util.List;
 
+@WebService(endpointInterface = "gm.jta.service.PersonServiceWs")
 @Stateless
-public class PersonServiceImpl implements PersonServiceRemote, PersonService {
+public class PersonServiceImpl implements PersonService, PersonServiceWs, PersonServiceRemote {
 
     @Inject
     private PersonDao personDao;
+
+    @Resource
+    private SessionContext context;
 
     @Override
     public List<Person> listPersons() {
