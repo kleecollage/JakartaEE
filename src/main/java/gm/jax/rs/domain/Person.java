@@ -1,5 +1,6 @@
 package gm.jax.rs.domain;
 
+import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
@@ -16,6 +17,7 @@ public class Person {
         this.idPerson = idPerson;
     }
 
+    @XmlElement
     public int getIdPerson() {
         return idPerson;
     }
@@ -23,7 +25,7 @@ public class Person {
     public void setIdPerson(int idPerson) {
         this.idPerson = idPerson;
     }
-
+    @XmlElement
     public String getName() {
         return name;
     }
@@ -32,6 +34,7 @@ public class Person {
         this.name = name;
     }
 
+    @XmlElement
     public String getSurname() {
         return surname;
     }
@@ -40,6 +43,7 @@ public class Person {
         this.surname = surname;
     }
 
+    @XmlElement
     public String getEmail() {
         return email;
     }
@@ -48,6 +52,7 @@ public class Person {
         this.email = email;
     }
 
+    @XmlElement
     public String getPhone() {
         return phone;
     }
