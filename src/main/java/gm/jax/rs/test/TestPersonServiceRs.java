@@ -31,10 +31,10 @@ public class TestPersonServiceRs {
 
         // Add one person (post method)
         Person newPerson = new Person();
-        newPerson.setName("Test54");
-        newPerson.setSurname("Test5");
-        newPerson.setEmail("test35@mail.com");
-        newPerson.setPhone("01 54846132");
+        newPerson.setName("David");
+        newPerson.setSurname("Brown");
+        newPerson.setEmail("d.brown@mail.com");
+        newPerson.setPhone("01 54 84 61 32");
         invocationBuilder = webTarget.request(MediaType.APPLICATION_XML);
         response = invocationBuilder.post(Entity.entity(newPerson, MediaType.APPLICATION_XML));
         System.out.println();
@@ -42,8 +42,8 @@ public class TestPersonServiceRs {
         String responseString = response.readEntity(String.class);
         System.out.println("Raw response: " + responseString);
         // Recover the new person added to update and delete
-        // Person personRecover = response.readEntity(Person.class);
-        // System.out.println("Person added: " + personRecover);
+        Person personRecover = response.readEntity(Person.class);
+        System.out.println("Person added: " + personRecover);
 
         // Update person (put method)
         Person personUpdate = person;

@@ -5,7 +5,7 @@ import jakarta.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class Person {
-    private int idPerson;
+    private Integer idPerson;
     private String name;
     private String surname;
     private String email;
@@ -13,16 +13,16 @@ public class Person {
 
     public Person() { }
 
-    public Person(int idPerson) {
+    public Person(Integer idPerson) {
         this.idPerson = idPerson;
     }
 
     @XmlElement
-    public int getIdPerson() {
+    public Integer getIdPerson() {
         return idPerson;
     }
 
-    public void setIdPerson(int idPerson) {
+    public void setIdPerson(Integer idPerson) {
         this.idPerson = idPerson;
     }
     @XmlElement
