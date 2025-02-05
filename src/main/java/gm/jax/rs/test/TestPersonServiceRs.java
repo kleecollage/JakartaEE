@@ -3,6 +3,8 @@ package gm.jax.rs.test;
 import gm.jax.rs.domain.Person;
 import jakarta.ws.rs.client.*;
 import jakarta.ws.rs.core.*;
+import org.glassfish.jersey.client.ClientConfig;
+import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
 
 import java.util.List;
 
@@ -17,7 +19,16 @@ public class TestPersonServiceRs {
     private static Response response;
 
     public static void main(String[] args) {
-        client = ClientBuilder.newClient();
+        HttpAuthenticationFeature feature = HttpAuthenticationFeature
+                .basicBuilder()
+                .nonPreemptive()
+                .credentials("admin", "admin")
+                .build();
+
+        ClientConfig clientConfig = new ClientConfig();
+        clientConfig.register(feature);
+
+        client = ClientBuilder.newClient(clientConfig);
         webTarget = client.target(BASE_URL).path("/persons");
 
         // Read one person (get method)
@@ -33,34 +44,30 @@ public class TestPersonServiceRs {
         Person newPerson = new Person();
         newPerson.setName("David");
         newPerson.setSurname("Brown");
-        newPerson.setEmail("d.brown@mail.com");
+        newPerson.setEmail("d.brown4@mail.com");
         newPerson.setPhone("01 54 84 61 32");
         invocationBuilder = webTarget.request(MediaType.APPLICATION_XML);
         response = invocationBuilder.post(Entity.entity(newPerson, MediaType.APPLICATION_XML));
         System.out.println();
         System.out.println(response.getStatus());
-        String responseString = response.readEntity(String.class);
-        System.out.println("Raw response: " + responseString);
         // Recover the new person added to update and delete
         Person personRecover = response.readEntity(Person.class);
         System.out.println("Person added: " + personRecover);
 
         // Update person (put method)
-        Person personUpdate = person;
-        personUpdate.setSurname("Smith");
-        String pathId = "/" + personUpdate.getIdPerson();
+        personRecover.setSurname("Smith");
+        String pathId = "/" + personRecover.getIdPerson();
         invocationBuilder = webTarget.path(pathId).request(MediaType.APPLICATION_XML);
-        response = invocationBuilder.put(Entity.entity(personUpdate, MediaType.APPLICATION_XML));
+        response = invocationBuilder.put(Entity.entity(personRecover, MediaType.APPLICATION_XML));
         System.out.println("\nresponse: " + response.getStatus());
         System.out.println("personUpdate = " + response.readEntity(Person.class));
 
         // Remove person (delete method)
-        Person personDelete = person;
-        String pathDeleteId =  "/" + personDelete.getIdPerson();
+        String pathDeleteId =  "/" + personRecover.getIdPerson();
         invocationBuilder = webTarget.path(pathDeleteId).request(MediaType.APPLICATION_XML);
-        // response = invocationBuilder.delete();
+        response = invocationBuilder.delete();
         System.out.println("\nresponse: " + response.getStatus());
-        System.out.println("personDelete = " + personDelete);
+        System.out.println("personDelete = " + personRecover);
     }
 
     private static void printPersons(List<Person> persons) {
