@@ -32,7 +32,7 @@ public class Person implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_person", nullable = false)
+    @Column(name = "id_person")
     private Integer idPerson;
 
     @Size(max = 100)

@@ -1,13 +1,10 @@
 package gm.jta.service;
 
 import gm.jta.domain.Person;
-import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
-import jakarta.ws.rs.core.MediaType;
-import jakarta.ws.rs.core.Response;
-
+import jakarta.ws.rs.core.*;
 import java.util.List;
 
 @Path("/persons")

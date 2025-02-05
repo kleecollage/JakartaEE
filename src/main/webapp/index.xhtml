@@ -2,14 +2,19 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="jakarta.faces.html">
+      xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui">
 <h:head>
     <title>Student Managment System</title>
 </h:head>
 <h:body>
     <h2>Student Managment System</h2>
+    Welcome: <h:outputText value="#{p:userPrincipal()}" />
     <h:form>
-        <h:commandButton value="Persons List" action="listPeople" />
+        <p:messages />
+        <p:panelGrid columns="1" rendered="#{p:ifGranted('ROLE_ADMIN') || p:ifGranted('ROLE_USER')}">
+            <h:commandButton value="Persons List" action="listPeople" />
+        </p:panelGrid>
     </h:form>
 </h:body>
 </html>

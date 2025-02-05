@@ -3,17 +3,18 @@ package gm.jta.service;
 import gm.jta.data.PersonDao;
 import gm.jta.domain.Person;
 import jakarta.annotation.Resource;
-import jakarta.ejb.LocalBean;
+import jakarta.annotation.security.DeclareRoles;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;
 import jakarta.inject.Inject;
 import jakarta.jws.WebService;
-
-import java.util.ArrayList;
 import java.util.List;
 
-@WebService(endpointInterface = "gm.jta.service.PersonServiceWs")
 @Stateless
+@WebService(endpointInterface = "gm.jta.service.PersonServiceWs")
+@DeclareRoles({"ROLE_ADMIN", "ROLE_USER"})
+@RolesAllowed({"ROLE_ADMIN", "ROLE_USER"})
 public class PersonServiceImpl implements PersonService, PersonServiceWs, PersonServiceRemote {
 
     @Inject
@@ -48,6 +49,7 @@ public class PersonServiceImpl implements PersonService, PersonServiceWs, Person
     }
 
     @Override
+    @RolesAllowed("ROLE_ADMIN")
     public void deletePerson(Person person) {
         personDao.deletePerson(person);
     }
