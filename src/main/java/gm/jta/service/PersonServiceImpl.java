@@ -4,6 +4,7 @@ import gm.jta.data.PersonDao;
 import gm.jta.domain.Person;
 import jakarta.annotation.Resource;
 import jakarta.annotation.security.DeclareRoles;
+import jakarta.annotation.security.PermitAll;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;
@@ -13,6 +14,7 @@ import java.util.List;
 
 @Stateless
 @WebService(endpointInterface = "gm.jta.service.PersonServiceWs")
+// @PermitAll
 @DeclareRoles({"ROLE_ADMIN", "ROLE_USER"})
 @RolesAllowed({"ROLE_ADMIN", "ROLE_USER"})
 public class PersonServiceImpl implements PersonService, PersonServiceWs, PersonServiceRemote {
