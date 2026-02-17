@@ -11,7 +11,7 @@ import java.util.List;
 
 @WebServlet(name = "PersonServlet", urlPatterns = "/persons")
 public class PersonServlet extends HttpServlet {
-    @Inject // not works for WildFly
+    @Inject // not works for WildFly without beans.xml
     PersonService personService;
 
     @Override

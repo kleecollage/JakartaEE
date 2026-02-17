@@ -6,6 +6,7 @@ import java.util.List;
 
 @Local
 public interface PersonService {
+
     public List<Person> listPersons();
 
     public Person findPersonById(Person person);
