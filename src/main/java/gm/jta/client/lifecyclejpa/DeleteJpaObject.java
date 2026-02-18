@@ -24,7 +24,7 @@ public class DeleteJpaObject {
         // 3. END TRANSACTION 1
         tx.commit();
         // Status: detached
-        log.debug("Object found (detached) : " + person1);
+        log.debug("Object found (detached) : {}", person1);
         // 4. INIT TRANSACTION 2
         EntityTransaction tx2 = em.getTransaction();
         tx2.begin();
@@ -33,7 +33,7 @@ public class DeleteJpaObject {
         // 6. END TRANSACTION 2
         tx2.commit();
         // Object status: detached
-        log.debug("Object deleted: " + person1);
+        log.debug("Object deleted: {}", person1);
         // CLOSE ENTITY MANAGER
         em.close();
     }

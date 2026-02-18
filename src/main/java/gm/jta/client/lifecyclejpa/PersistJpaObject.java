@@ -23,7 +23,7 @@ public class PersistJpaObject {
         // 4. COMMIT / ROLLBACK
         tx.commit(); // <- here the object is saved on db
         // Status: detached
-        log.debug("Person persisted - status detached : " + person1);
+        log.debug("Person persisted - status detached : {}", person1);
         // CLOSE ENTITY MANAGER
         em.close();
     }

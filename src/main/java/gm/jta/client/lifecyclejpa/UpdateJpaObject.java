@@ -24,7 +24,7 @@ public class UpdateJpaObject {
         // 3. END OF TRANSACTION 1
         tx.commit();
         // Status: detached
-        log.debug("Person recovered - status detached : " + person1);
+        log.debug("Person recovered - status detached : {}", person1);
         // 4. setValue(new value)
         person1.setSurname("Smith");
         // 5. INIT TRANSACTION 2.
@@ -35,7 +35,7 @@ public class UpdateJpaObject {
         // 7. END OF TRANSACTION 2
         tx2.commit();
         // Status: detached and updated
-        log.debug("Object recovered - status detached : " + person1);
+        log.debug("Object recovered - status detached : {}", person1);
         // CLOSE ENTITY MANAGER
         em.close();
     }

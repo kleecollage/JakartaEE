@@ -8,8 +8,8 @@
         <class>gm.jta.domain.User</class>
         <properties>
             <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/jpa_db?useSSL=false&amp;useTimezone=true&amp;serverTimezone=UTC" />
-            <property name="jakarta.persistence.jdbc.user" value="root"/>
-            <property name="jakarta.persistence.jdbc.password" value=""/>
+            <property name="jakarta.persistence.jdbc.user" value="kleec"/>
+            <property name="jakarta.persistence.jdbc.password" value="Admin123*"/>
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <property name="eclipselink.logging.level.sql" value="FINE" />
             <property name="eclipselink.logging.parameters" value="true"/>

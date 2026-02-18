@@ -17,7 +17,7 @@ public class ClientEntityPerson {
         // ID FROM DB MUST BE NOT SPECIFIED
         Person person1 = new Person("Alex", "Johnson", "a.johnson@mail.com", "01 63 11 45 77");
         log.debug("Object to persist: " + person1);
-        // OBJECT PERSISTANCE
+        // OBJECT PERSISTENCE
         em.persist(person1);
         // END TRANSACTION
         tx.commit();

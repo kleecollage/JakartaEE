@@ -19,10 +19,10 @@ public class ClientAssociationsJpa {
         em.close();
         // Print Objects<Person>
         for (Person person : persons) {
-            log.debug("Person: " + person);
+            log.debug("Person: {}", person);
             // recover users for each person
             for(User user: person.getUserList()) {
-                log.debug("User: " + user);
+                log.debug("User: {}", user);
             }
         }
     }

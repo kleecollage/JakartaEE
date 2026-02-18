@@ -24,7 +24,7 @@ public class FindJpaObject {
         // 3. COMMIT / ROLLBACK
         tx.commit(); // <- here the object is saved on db
         // Status: detached
-        log.debug("Person recovered - status detached : " + person1);
+        log.debug("Person recovered - status detached : {}", person1);
         // CLOSE ENTITY MANAGER
         em.close();
     }

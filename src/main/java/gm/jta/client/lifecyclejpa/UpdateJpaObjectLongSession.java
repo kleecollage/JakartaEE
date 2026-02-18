@@ -21,14 +21,14 @@ public class UpdateJpaObjectLongSession {
         tx.begin();
         // 2. EXECUTE SELECT SQL SENTENCE
         Person person1 = em.find(Person.class, 1);
-        log.debug("Object found: " + person1);
+        log.debug("Object found: {}", person1);
         // 3. setValue(newValue)
         person1.setEmail("j.smith55@mail.com");
         person1.setEmail("john.smith@mail.com");
         // 4. END TRANSACTION
         tx.commit();
-        // Object status: deatached
-        log.debug("Object updated: " + person1);
+        // Object status: detached
+        log.debug("Object updated: {}", person1);
         // CLOSE ENTITY MANAGER
         em.close();
     }

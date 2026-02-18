@@ -36,7 +36,7 @@ public class TestCriteriaApi {
         query = em.createQuery(criteriaQuery);
         // STEP 6. EXECUTE THE QUERY
         persons = query.getResultList();
-        // showPersons(persons);
+        showPersons(persons);
 
         // 2-a. QUERY PERSON WITH ID = 1
         // jpql = "select p from Person p where p.idPerson = 1

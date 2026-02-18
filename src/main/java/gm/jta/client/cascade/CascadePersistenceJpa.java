@@ -23,8 +23,8 @@ public class CascadePersistenceJpa {
         // 4. COMMIT TRANSACTION
         tx.commit();
         // Objects detached
-        log.debug("Object persisted person1: " + person1);
-        log.debug("Object persisted user1: " + user1);
+        log.debug("Object persisted person1: {}", person1);
+        log.debug("Object persisted user1: {}", user1);
 
         em.close();
 
