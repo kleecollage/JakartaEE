@@ -5,6 +5,11 @@
              version="3.2">
     <persistence-unit name="PersonPU" transaction-type="JTA">
         <jta-data-source>java:/MySqlDS</jta-data-source>
+        <properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.show_sql" value="true"/>
+        </properties>
     </persistence-unit>
 </persistence>
 <!--    THIS CODE IS COMMENT, NOW WE USE JTA TRANSACTION INSTEAD OF RESOURCE_LOCAL     -->
