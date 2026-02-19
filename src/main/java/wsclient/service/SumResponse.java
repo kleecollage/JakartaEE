@@ -6,12 +6,11 @@ import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlType;
 
-
 /**
  * <p>Java class for sumResponse complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="sumResponse"&gt;
  *   &lt;complexContent&gt;
@@ -23,12 +22,12 @@ import jakarta.xml.bind.annotation.XmlType;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "sumResponse", propOrder = {
-    "_return"
+        "_return"
 })
 public class SumResponse {
 
@@ -37,7 +36,7 @@ public class SumResponse {
 
     /**
      * Gets the value of the return property.
-     * 
+     *
      */
     public int getReturn() {
         return _return;
@@ -45,10 +44,12 @@ public class SumResponse {
 
     /**
      * Sets the value of the return property.
-     * 
+     *
      */
     public void setReturn(int value) {
         this._return = value;
     }
 
 }
+
+
