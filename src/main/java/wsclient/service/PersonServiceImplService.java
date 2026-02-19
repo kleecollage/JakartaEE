@@ -15,7 +15,8 @@ import jakarta.xml.ws.Service;
  *
  */
 @WebServiceClient(name = "PersonServiceImplService",
-                  wsdlLocation = "http://localhost:8080/jta/PersonServiceImpl?wsdl",
+                  // wsdlLocation = "http://localhost:8080/jta/PersonServiceImpl?wsdl",
+                  wsdlLocation = "http://localhost:8080/client_war/PersonServiceImplService?wsdl",
                   targetNamespace = "http://service.jta.gm/")
 public class PersonServiceImplService extends Service {
 
@@ -26,7 +27,8 @@ public class PersonServiceImplService extends Service {
     static {
         URL url = null;
         try {
-            url = new URL("http://localhost:8080/jta/PersonServiceImpl?wsdl");
+            // url = new URL("http://localhost:8080/jta/PersonServiceImpl?wsdl");
+            url = new URL("http://localhost:8080/client_war/PersonServiceImplService?wsdl");
         } catch (MalformedURLException e) {
             java.util.logging.Logger.getLogger(PersonServiceImplService.class.getName())
                 .log(java.util.logging.Level.INFO,

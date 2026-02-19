@@ -21,6 +21,5 @@ public interface PersonServiceWs {
     @RequestWrapper(localName = "listPersons", targetNamespace = "http://service.jta.gm/", className = "wsclient.service.ListPersons")
     @ResponseWrapper(localName = "listPersonsResponse", targetNamespace = "http://service.jta.gm/", className = "wsclient.service.ListPersonsResponse")
     @WebResult(name = "return", targetNamespace = "")
-    public java.util.List<wsclient.service.Person> listPersons()
-;
+    public java.util.List<wsclient.service.Person> listPersons();
 }

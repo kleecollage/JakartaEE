@@ -1,4 +1,3 @@
-
 package wsclient.service;
 
 import jakarta.xml.bind.annotation.XmlAccessType;
